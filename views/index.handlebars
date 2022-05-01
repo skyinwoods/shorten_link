@@ -1,0 +1,39 @@
+
+ {{#if new_link}} 
+  <div class ="container" style="text-align: center; margin-top: 2em">
+    <h2>Success! Please use this link:</h2>
+    <a href="http://localhost:3000/{{new_link}}" id="linkText">http://localhost:3000/{{new_link}}</a>
+    <button id="copyBtn" onclick = "copyClick()" type="button" class="btn btn-primary btn-lg" data-clipboard-text="hey">Copy</button>
+  </div>
+
+{{else}}
+{{!-- Input --}}
+<form action="/" method="POST">
+  <div class = "container" style="text-align: center;">
+ 
+      <input type="url" name = "url" class="form-control" style="margin-top: 2em"
+   placeholder="Input URL here" aria-label="Username" aria-describedby="basic-addon1">
+      <button type="submit" class="btn btn-outline-primary btn-lg" style="margin-top: 2em;">Shorten</button>
+  </div>
+</form>
+
+{{/if}}
+
+
+<script>
+function copyClick(){
+  var copyText = document.getElementById("copyBtn");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value)
+  .then(() =>{
+    console.log('success')
+    alert('success!')
+  })
+  .catch(() => {
+    alert('failed')
+  })
+}
+
+
+</script>
