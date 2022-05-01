@@ -1,5 +1,5 @@
 function copyClick(){
-  var copyText = document.getElementById("copyBtn");
+  var copyText = document.getElementById("linkText");
   copyText.select();
   copyText.setSelectionRange(0, 99999);
   navigator.clipboard

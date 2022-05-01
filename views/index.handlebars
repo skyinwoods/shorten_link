@@ -3,8 +3,10 @@
   <div class ="container" style="text-align: center; margin-top: 2em">
     <h2>Success! Please use this link:</h2>
     <a href="http://localhost:3000/{{new_link}}" id="linkText">http://localhost:3000/{{new_link}}</a>
-    <button id="copyBtn" onclick = "copyClick()" type="button" class="btn btn-primary btn-lg" >Copy</button>
+    <button onclick = "copyClick()" type="button" class="btn btn-primary btn-lg" >Copy</button>
   </div>
+
+
 
 {{else}}
 {{!-- Input --}}
@@ -17,23 +19,8 @@
   </div>
 </form>
 
+
+
 {{/if}}
 
 
-<script>
-function copyClick(){
-  var copyText = document.getElementById("copyBtn");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText.value)
-  .then(() =>{
-    console.log('success')
-    alert('success!')
-  })
-  .catch(() => {
-    alert('failed')
-  })
-}
-
-
-</script>
