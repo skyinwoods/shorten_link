@@ -75,8 +75,9 @@ app.get('/:shortenlink', (req,res)=>{
       if (!data){
         let errMsg = "Can't find the URI!"
         res.render('error', {errMsg})
+      }else{
+        res.redirect(data.origin_link)
       }
-      res.redirect(data.origin_link)
     })
     .catch(error => console.log(error)) 
 })
