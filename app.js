@@ -3,6 +3,8 @@ const express = require('express')
 const app = express()
 const Link = require('./models/link')
 const shortenLink = require("./utils/getRandom")
+
+
 // 引用路由器
 const routes = require('./routes') 
 require('./config/mongoose')
@@ -23,10 +25,37 @@ app.set('view engine', 'handlebars')
 //setting static files
 app.use(express.static('public'))
 
-
-
-
-
+app.post('/', (req, res) => {
+  const url = req.body.url
+  const newLink = shortenLink(5)
+  console.log(newLink)
+  console.log(url)
+  // 使用者輸入為空白則為 error
+  if (url == ''){
+    let errMsg = "Invalid input!"
+    res.render('error', {errMsg})
+  }
+  
+  Link.findOne({ origin_link: url})
+    .then((data) => {
+      if(data){
+        // 如果輸入相同網址，會回傳之前做過的網址
+        console.log('URL exists')
+        res.render('index', {
+        new_link: data.new_link})
+      }else{
+        console.log('URL not exists')
+        Link.create({origin_link: url, new_link:  newLink})
+        .then(() => res.render('index', {
+            origin_link: url,
+            new_link: newLink}))
+         .catch(error => console.log(error)) 
+        
+      }
+    })
+    .catch(error => console.log(error)) 
+ 
+})
 
 
 app.get('/:shortenlink', (req,res)=>{
