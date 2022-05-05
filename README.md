@@ -8,8 +8,12 @@
 
 ## 開始使用
 1. 安裝 node.js/ npm/ nodemon
-2. 安裝完畢後，輸入`nodemon run dev` 開始使用
-3. 若看見訊息「mongodb connected!」表示連接成功
+2. 使用終端機將專案 clone 到本機位置，或是直接下載 zip 檔再以 Vscode 開啟
+3. 設定您的 MONGODB_URI 變數
+4. 新增種子資料`npm run seed`
+5. 輸入`nodemon run dev` 開始使用
+6. 若看見訊息「mongodb connected!」表示連接成功
+7. 欲關閉程式請用 `ctrl + c`
 
 
 ## 開發工具
